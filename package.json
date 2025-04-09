@@ -29,6 +29,7 @@
 		"wrangler": "^4.9.1"
 	},
 	"dependencies": {
+		"@shoelace-style/shoelace": "^2.20.1",
 		"@tomic/lib": "^0.40.0",
 		"@tomic/react": "^0.40.0"
 	}
