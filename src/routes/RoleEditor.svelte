@@ -30,6 +30,15 @@
 		onUpdate("haystacks", [...role.haystacks]);
 	}
 
+	function addHaystack() {
+		role.haystacks.push({ path: "", service: "" });
+		onUpdate("haystacks", [...role.haystacks]);
+	}
+
+	function removeHaystack(index: number) {
+		role.haystacks.splice(index, 1);
+		onUpdate("haystacks", [...role.haystacks]);
+	}
 
 	function updateKGField(field: string, value: string | boolean) {
 		const kg = role.kg || {
@@ -54,23 +63,23 @@
 	<!-- Role Fields -->
 	<sl-input
 		label="Role Name"
-		value={role.name}
+		value={role?.name}
 		on:sl-input={(e) => onUpdate("name", e.target.value)}
 	/>
 	<sl-input
 		label="Shortname"
-		value={role.shortname}
+		value={role?.shortname}
 		on:sl-input={(e) => onUpdate("shortname", e.target.value)}
 	/>
 	<sl-input
 		label="Relevance Function"
-		value={role.relevance_function}
+		value={role?.relevance_function}
 		on:sl-input={(e) => onUpdate("relevance_function", e.target.value)}
 	/>
 
 	<sl-select
 		label="Theme"
-		value={role.theme}
+		value={role?.theme}
 		on:sl-change={(e) => onUpdate("theme", e.target.value)}
 	>
 		<sl-option value="lumen">Lumen</sl-option>
@@ -83,34 +92,34 @@
 	<h3 class="mt-6 text-lg font-semibold">Knowledge Graph</h3>
 	<sl-input
 		label="Remote URL"
-		value={role.kg?.automata_path?.Remote ?? ""}
+		value={role?.kg?.automata_path?.Remote ?? ""}
 		on:sl-input={(e) => updateKGField("Remote", e.target.value)}
 	/>
 	<sl-input
 		label="Local Input Type"
-		value={role.kg?.knowledge_graph_local?.input_type ?? ""}
+		value={role?.kg?.knowledge_graph_local?.input_type ?? ""}
 		on:sl-input={(e) => updateKGField("input_type", e.target.value)}
 	/>
 	<sl-input
 		label="Local Path"
-		value={role.kg?.knowledge_graph_local?.path ?? ""}
+		value={role?.kg?.knowledge_graph_local?.path ?? ""}
 		on:sl-input={(e) => updateKGField("local_path", e.target.value)}
 	/>
 
 	<sl-checkbox
-		checked={role.kg?.public ?? false}
+		checked={role?.kg?.public ?? false}
 		on:sl-change={(e) => updateKGField("public", e.target.checked)}
 		>Public</sl-checkbox
 	>
 	<sl-checkbox
-		checked={role.kg?.publish ?? false}
+		checked={role?.kg?.publish ?? false}
 		on:sl-change={(e) => updateKGField("publish", e.target.checked)}
 		>Publish</sl-checkbox
 	>
 
 	<!-- Haystacks -->
 	<h3 class="mt-6 text-lg font-semibold">Haystacks</h3>
-	{#each role.haystacks as haystack, i}
+	{#each role?.haystacks as haystack, i}
 		<div class="space-y-2 rounded-md border bg-gray-50 p-4">
 			<sl-input
 				label="Path"
@@ -123,9 +132,14 @@
 				on:sl-input={(e) =>
 					updateHaystack(i, "service", e.target.value)}
 			/>
+			<sl-button
+				variant="danger"
+				size="small"
+				on:click={() => removeHaystack(i)}>Remove</sl-button
+			>
 		</div>
 	{/each}
-
+	<sl-button variant="text" on:click={addHaystack}>+ Add Haystack</sl-button>
 
 	<!-- Save Button -->
 	<div class="pt-4">

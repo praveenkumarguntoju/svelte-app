@@ -29,7 +29,7 @@
 						class="w-full rounded-md px-3 py-2 text-left transition
 							{selectedRoleName === roleName ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-blue-100'}"
 					>
-						{role.name}
+						{role?.name}
 					</button>
 				</li>
 			{/each}
@@ -38,7 +38,7 @@
 
 	<!-- Main content: Editable role details -->
 	<main class="flex-1 rounded-lg bg-white p-6 shadow">
-		<h2 class="mb-4 text-2xl font-bold">Edit Role: {selectedRole.name}</h2>
+		<h2 class="mb-4 text-2xl font-bold">Edit Role: {selectedRole?.name}</h2>
 
 		<RoleEditor role={selectedRole} onUpdate={(key, value) => updateRoleField(key, value)} />
 	</main>

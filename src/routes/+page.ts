@@ -96,7 +96,6 @@ export async function load() {
         let name:any = obj['name'] || '';
 		roleobj[name] = obj;
 	}
-
 	serverConfig.roles = roleobj;
 
 	return {
