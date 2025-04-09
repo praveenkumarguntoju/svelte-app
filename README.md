@@ -36,3 +36,9 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+
+
+App deployed to cloudfare : https://my-svelte-app.gpravin999.workers.dev/
+
+Atomic server url: https://atomicdata.dev/01jrbfg8draxkzypjzv3wjbqvg/defaultontology 
