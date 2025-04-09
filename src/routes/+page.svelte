@@ -38,6 +38,21 @@
 
 	<!-- Main content: Editable role details -->
 	<main class="flex-1 rounded-lg bg-white p-6 shadow">
+		<div class="mb-6 grid grid-cols-1 gap-2 sm:grid-cols-2 text-sm text-gray-800">
+			<div>
+				<span class="font-semibold">ID:</span> {serverConfig?.id}
+			</div>
+			<div>
+				<span class="font-semibold">Global Shortcut:</span> {serverConfig?.global_shortcut}
+			</div>
+			<div>
+				<span class="font-semibold">Default Role:</span> {serverConfig?.default_role}
+			</div>
+			<div>
+				<span class="font-semibold">Selected Role:</span> {serverConfig?.selected_role}
+			</div>
+		</div>
+		
 		<h2 class="mb-4 text-2xl font-bold">Edit Role: {selectedRole?.name}</h2>
 
 		<RoleEditor role={selectedRole} onUpdate={(key, value) => updateRoleField(key, value)} />
