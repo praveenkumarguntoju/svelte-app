@@ -30,16 +30,6 @@
 		onUpdate("haystacks", [...role.haystacks]);
 	}
 
-	function addHaystack() {
-		role.haystacks.push({ path: "", service: "" });
-		onUpdate("haystacks", [...role.haystacks]);
-	}
-
-	function removeHaystack(index: number) {
-		role.haystacks.splice(index, 1);
-		onUpdate("haystacks", [...role.haystacks]);
-	}
-
 	function updateKGField(field: string, value: string | boolean) {
 		const kg = role.kg || {
 			automata_path: { Remote: "" },
@@ -132,14 +122,9 @@
 				on:sl-input={(e) =>
 					updateHaystack(i, "service", e.target.value)}
 			/>
-			<sl-button
-				variant="danger"
-				size="small"
-				on:click={() => removeHaystack(i)}>Remove</sl-button
-			>
 		</div>
 	{/each}
-	<sl-button variant="text" on:click={addHaystack}>+ Add Haystack</sl-button>
+
 
 	<!-- Save Button -->
 	<div class="pt-4">
