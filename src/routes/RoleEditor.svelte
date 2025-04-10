@@ -1,13 +1,16 @@
 <script lang="ts">
+	import { onMount } from "svelte";
 	import type { Role } from "$lib/model";
 	// import { saveRoleToAtomic } from "$lib/saveRoleToAtomic";
 
 	// Shoelace components
-	import "@shoelace-style/shoelace/dist/components/input/input.js";
-	import "@shoelace-style/shoelace/dist/components/select/select.js";
-	import "@shoelace-style/shoelace/dist/components/option/option.js";
-	import "@shoelace-style/shoelace/dist/components/checkbox/checkbox.js";
-	import "@shoelace-style/shoelace/dist/components/button/button.js";
+	onMount(async () => {
+		await import ("@shoelace-style/shoelace/dist/components/input/input.js");
+		await import ("@shoelace-style/shoelace/dist/components/select/select.js");
+		await import ("@shoelace-style/shoelace/dist/components/option/option.js");
+		await import ("@shoelace-style/shoelace/dist/components/checkbox/checkbox.js");
+		await import ("@shoelace-style/shoelace/dist/components/button/button.js");
+	});
 
 	export let role: Role;
 	export let onUpdate: (key: keyof Role, value: any) => void;
@@ -17,10 +20,10 @@
 	async function handleSave() {
 		saving = true;
 		try {
-			const res = await fetch('/api/saveRole', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(role)
+			const res = await fetch("/api/saveRole", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(role),
 			});
 
 			const result = await res.json();
@@ -36,7 +39,6 @@
 		}
 		saving = false;
 	}
-
 
 	function updateHaystack(
 		index: number,
@@ -141,7 +143,6 @@
 			/>
 		</div>
 	{/each}
-
 
 	<!-- Save Button -->
 	<div class="pt-4">

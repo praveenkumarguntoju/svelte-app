@@ -6,9 +6,6 @@ export function createStore(privateKey: string, agentURL: string) {
 
   const agent = new Agent(privateKey, agentURL);
   store.setAgent(agent);
-
-  console.log('✅ Agent public key:', agent.getPublicKey());
-
   // Debug only: expose on window for dev
   // @ts-ignore
   if (typeof window !== 'undefined') window.store = store;
