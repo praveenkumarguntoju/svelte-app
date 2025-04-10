@@ -14,13 +14,6 @@
 
 	let saving = false;
 
-	// async function handleSave() {
-	// 	saving = true;
-	// 	const success = await saveRoleToAtomic(role);
-	// 	saving = false;
-	// 	alert(success ? "✅ Saved!" : "❌ Save failed");
-	// }
-
 	async function handleSave() {
 		saving = true;
 		try {
@@ -137,12 +130,12 @@
 		<div class="space-y-2 rounded-md border bg-gray-50 p-4">
 			<sl-input
 				label="Path"
-				value={haystack.path}
+				value={haystack?.path}
 				on:sl-input={(e) => updateHaystack(i, "path", e.target.value)}
 			/>
 			<sl-input
 				label="Service"
-				value={haystack.service}
+				value={haystack?.service}
 				on:sl-input={(e) =>
 					updateHaystack(i, "service", e.target.value)}
 			/>

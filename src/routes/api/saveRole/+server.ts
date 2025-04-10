@@ -2,12 +2,13 @@ import { json } from '@sveltejs/kit';
 import { createStore } from '$lib/atomicClient';
 
 export async function POST({ request, platform }) {
-    const base = 'https://atomicdata.dev/01jrbfg8draxkzypjzv3wjbqvg/defaultontology/property';
-    const pathProp = 'https://atomicdata.dev/properties/path';
-    const serviceProp = 'https://atomicdata.dev/01jrbhd45egb6zt0dtz63reqpc';
 	const env = platform?.env || process.env;
 	const PRIVATE_KEY = env.PRIVATE_KEY;
 	const AGENT_URL = env.AGENT_URL;
+	const BASE_URL = env.BASE_URL;
+    const PATH_PROP = env.PATH_PROP
+    const base = BASE_URL;
+    const pathProp = PATH_PROP;
 
 	if (!PRIVATE_KEY || !AGENT_URL) {
 		return json({ error: 'Missing secrets' }, { status: 500 });
