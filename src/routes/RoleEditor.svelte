@@ -24,7 +24,7 @@
 	async function handleSave() {
 		saving = true;
 		try {
-			const res = await fetch('/api/save-role', {
+			const res = await fetch('/api/saveRole', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(role)
