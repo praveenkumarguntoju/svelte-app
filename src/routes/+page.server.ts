@@ -7,8 +7,6 @@ export const load = async ({ platform }) => {
     const PRIVATE_KEY = env.PRIVATE_KEY;
     const AGENT_URL = env.AGENT_URL;
     const BASE_URL = env.BASE_URL;
-    const PATH_PROP = env.PATH_PROP
-    const SUBJECT_URL = env.SUBJECT_URL
 
     console.log('✅ PRIVATE_KEY:', PRIVATE_KEY);
     console.log('✅ AGENT_URL:', AGENT_URL);
@@ -19,10 +17,10 @@ export const load = async ({ platform }) => {
 
     const { store, agent } = createStore(PRIVATE_KEY, AGENT_URL);
 
-    const subject = SUBJECT_URL;
+    const subject = 'https://atomicdata.dev/01jrbnssgaajse2s37j2tdpaah';
     const base = BASE_URL;
 
-    const pathProp = PATH_PROP;
+    const pathProp = 'https://atomicdata.dev/properties/path';
 
     // Fetch ServerConfig
     const resource = await store.getResource(subject);
