@@ -5,6 +5,7 @@ const pathProp = 'https://atomicdata.dev/properties/path';
 const serviceProp = 'https://atomicdata.dev/01jrbhd45egb6zt0dtz63reqpc';
 
 export async function saveRoleToAtomic(role: any) {
+	debugger;
 	try {
 		// 1. Save top-level Role fields
 		if (!role.url) throw new Error('Missing role.url');
@@ -36,8 +37,8 @@ export async function saveRoleToAtomic(role: any) {
 
 			// Save automata
 			if (role.kg.automata_path?.url) {
-				const autoRes = await store.getResource(role.kg.automata.url);
-				await autoRes.set(`${base}/remote`, role.kg.automata.Remote);
+				const autoRes = await store.getResource(role.kg.automata_path.url);
+				await autoRes.set(`${base}/remote`, role.kg.automata_path.Remote);
 				await autoRes.save();
 			}
 
