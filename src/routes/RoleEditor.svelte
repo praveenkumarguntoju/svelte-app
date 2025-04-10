@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Role } from "$lib/model";
-	import { saveRoleToAtomic } from "$lib/saveRoleToAtomic";
+	// import { saveRoleToAtomic } from "$lib/saveRoleToAtomic";
 
 	// Shoelace components
 	import "@shoelace-style/shoelace/dist/components/input/input.js";
@@ -14,12 +14,36 @@
 
 	let saving = false;
 
+	// async function handleSave() {
+	// 	saving = true;
+	// 	const success = await saveRoleToAtomic(role);
+	// 	saving = false;
+	// 	alert(success ? "✅ Saved!" : "❌ Save failed");
+	// }
+
 	async function handleSave() {
 		saving = true;
-		const success = await saveRoleToAtomic(role);
+		try {
+			const res = await fetch('/api/save-role', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(role)
+			});
+
+			const result = await res.json();
+
+			if (res.ok && result.success) {
+				alert("✅ Saved!");
+			} else {
+				alert("❌ Save failed: " + result.error);
+			}
+		} catch (e) {
+			console.error("❌ Save error:", e);
+			alert("❌ Save failed: Unexpected error");
+		}
 		saving = false;
-		alert(success ? "✅ Saved!" : "❌ Save failed");
 	}
+
 
 	function updateHaystack(
 		index: number,
