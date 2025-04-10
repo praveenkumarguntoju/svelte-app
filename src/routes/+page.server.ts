@@ -1,4 +1,5 @@
 export const load = async ({ platform }) => {
+    console.log('✅ platform:', platform);
 	const env = platform?.env || process.env;
 
 	const PRIVATE_KEY = env.PRIVATE_KEY;
