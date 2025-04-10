@@ -19,7 +19,7 @@ export const load = async ({ platform }) => {
     const subject = 'https://atomicdata.dev/01jrbnssgaajse2s37j2tdpaah';
     const base = env.BASE_URL;
 
-    const pathProp = 'https://atomicdata.dev/properties/path';
+    const pathProp  = env.PATH_PROP;
 
     // Fetch ServerConfig
     const resource = await store.getResource(subject);
