@@ -24,7 +24,7 @@ export async function saveRoleToAtomic(role: any) {
 				if (!hay.url) continue;
 				const hayRes = await store.getResource(hay.url);
 				await hayRes.set(pathProp, hay.path);
-				await hayRes.set(serviceProp, hay.service);
+				await hayRes.set(`${base}/service`, hay.service);
 				await hayRes.save();
 			}
 		}

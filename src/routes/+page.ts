@@ -29,13 +29,14 @@ export async function load() {
 
 			// Fetch haystack array
 			const haystackUrls = await roleRes.getArray(`${base}/haystacks`);
+			debugger;
 			const haystacks = await Promise.all(
 				haystackUrls.map(async (hurl: any) => {
 					const hay = await store.getResource(hurl);
 					return {
 						url: hurl,
 						path: hay.get(pathProp),
-						service: hay.get(serviceProp)
+						service: hay.get(`${base}/service`)
 					};
 				})
 			);
