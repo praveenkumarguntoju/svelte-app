@@ -17,7 +17,7 @@ export const load = async ({ platform }) => {
     const { store, agent } = createStore(PRIVATE_KEY, AGENT_URL);
 
     const subject = 'https://atomicdata.dev/01jrbnssgaajse2s37j2tdpaah';
-    const base = 'https://atomicdata.dev/01jrbfg8draxkzypjzv3wjbqvg/defaultontology/property';
+    const base = env.BASE_URL;
 
     const pathProp = 'https://atomicdata.dev/properties/path';
 
