@@ -42,3 +42,11 @@ You can preview the production build with `npm run preview`.
 App deployed to cloudfare : https://my-svelte-app.gpravin999.workers.dev/
 
 Atomic server url: https://atomicdata.dev/01jrbfg8draxkzypjzv3wjbqvg/defaultontology 
+
+All Secrets are deployed to cloudflare secrets
+```bash
+PRIVATE_KEY
+AGENT_URL
+BASE_URL
+SUBJECT_URL
+```
