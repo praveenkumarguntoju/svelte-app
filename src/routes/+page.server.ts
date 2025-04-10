@@ -16,7 +16,7 @@ export const load = async ({ platform }) => {
 
     const { store, agent } = createStore(PRIVATE_KEY, AGENT_URL);
 
-    const subject = 'https://atomicdata.dev/01jrbnssgaajse2s37j2tdpaah';
+    const subject = env.SUBJECT_URL;
     const base = env.BASE_URL;
 
     const pathProp  = env.PATH_PROP;
