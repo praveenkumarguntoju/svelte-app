@@ -1,20 +1,18 @@
+// src/lib/atomicClient.ts
 import { Agent, Store } from '@tomic/react';
 
-export const store = new Store({
-  serverUrl: 'https://atomicdata.dev',
-});
+export function createStore(privateKey: string, agentURL: string) {
+  const store = new Store({ serverUrl: 'https://atomicdata.dev' });
 
-// OPTIONAL: Auth with write access
-const privateKey = 'XSX9t7emBIzwtXtiAtY/E4dtJJtrxWNjtFeX2mziP6A=';
-const agentURL =
-  'https://atomicdata.dev/agents/rk+Yh85Z1S0oVzhbZcK4RczJTPXa9/dtAMDycsSdaTE=';
+  const agent = new Agent(privateKey, agentURL);
+  store.setAgent(agent);
 
-const agent = new Agent(privateKey, agentURL);
-store.setAgent(agent);
+  console.log('✅ Agent public key:', agent.getPublicKey());
 
-console.log(agent.getPublicKey());
+  // Debug only: expose on window for dev
+  // @ts-ignore
+  if (typeof window !== 'undefined') window.store = store;
 
-// Debug use only
-// @ts-ignore
-if (typeof window !== 'undefined') window.store = store;
+  return { store, agent };
+}
 
