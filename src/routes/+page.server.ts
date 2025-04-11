@@ -1,6 +1,7 @@
-import { createStore } from '$lib/atomicClient';
+import { Agent, Store } from '@tomic/react';
 
 export const load = async ({ platform }) => {
+    const store = new Store({ serverUrl: 'https://atomicdata.dev' });
     console.log('✅ platform:', platform);
     const env = platform?.env || process.env;
 
@@ -14,7 +15,8 @@ export const load = async ({ platform }) => {
         throw new Error('Missing Cloudflare secrets');
     }
 
-    const { store, agent } = createStore(PRIVATE_KEY, AGENT_URL);
+    const agent = new Agent(PRIVATE_KEY, AGENT_URL);
+    store.setAgent(agent);
 
     const subject = env.SUBJECT_URL;
     const base = env.BASE_URL;

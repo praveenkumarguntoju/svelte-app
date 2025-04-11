@@ -1,7 +1,9 @@
 import { json } from '@sveltejs/kit';
-import { createStore } from '$lib/atomicClient';
+
+import { Agent, Store } from '@tomic/react';
 
 export async function POST({ request, platform }) {
+    const store = new Store({ serverUrl: 'https://atomicdata.dev' });
 	const env = platform?.env || process.env;
 	const PRIVATE_KEY = env.PRIVATE_KEY;
 	const AGENT_URL = env.AGENT_URL;
@@ -12,7 +14,8 @@ export async function POST({ request, platform }) {
 		return json({ error: 'Missing secrets' }, { status: 500 });
 	}
 
-	const { store } = createStore(PRIVATE_KEY, AGENT_URL);
+    const agent = new Agent(PRIVATE_KEY, AGENT_URL);
+    store.setAgent(agent);
 	const role = await request.json();
 
     try {
